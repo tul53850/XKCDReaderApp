@@ -1,5 +1,6 @@
 package edu.temple.xkcdreader
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -40,7 +41,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
+        if (Intent.ACTION_VIEW == intent.action) {
+            lifecycleScope.launch {
+                fetchComic(intent.data?.path?.replace("/", "")!!)
+            }
+        }
     }
 
     suspend fun fetchComic(comicId: String) {
