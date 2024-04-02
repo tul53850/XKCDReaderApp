@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             if(this == Intent.ACTION_VIEW) {
                 intent.data?.let {
                     lifecycleScope.launch(Dispatchers.Main){
-                        fetchComic(it.path!!)
+                        fetchComic(it.path?.replace("/", "")!!)
                     }
                 }
             }
